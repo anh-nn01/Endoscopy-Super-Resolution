@@ -37,14 +37,14 @@ class Generator(nn.Module):
         out_0 = self.PReLU(out_0)
 
         ################## Residual Feature Transformation (local skip connections are in ResidualBlock) ##################
-        out_1 = self.ResidualBlock_1(out_0)
-        out_2 = self.ResidualBlock_2(out_1)
-        out_3 = self.ResidualBlock_3(out_2)
-        out_4 = self.ResidualBlock_4(out_3)
-        out_5 = self.ResidualBlock_5(out_4)
+        out = self.ResidualBlock_1(out_0)
+        out = self.ResidualBlock_2(out)
+        out = self.ResidualBlock_3(out)
+        out = self.ResidualBlock_4(out)
+        out = self.ResidualBlock_5(out)
 
         ################## Global Residual Learning ##################
-        out = self.conv2(out_5)
+        out = self.conv2(out)
         out = self.bn(out)
         out = out + out_0 # global skip connection
 
